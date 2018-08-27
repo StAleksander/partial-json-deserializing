@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using Newtonsoft.Json;
 using PartialDeserializer;
@@ -42,7 +43,7 @@ namespace PartialDeserializer.UnitTests
                 }
             };
             var json = JsonConvert.SerializeObject(orders);
-            var cashierInfo = PartialDeserializer.Deserialize<СashierInfo>(json);
+            var cashierInfo = PartialDeserializer.Deserialize<СashierInfo>(json).First();
             Assert.Equal(cashierInfo.EmployeeId, 1 );
             Assert.Equal(cashierInfo.FullName, "Sasha Pupkin" );
             Assert.Equal(cashierInfo.ShiftId, 1 );

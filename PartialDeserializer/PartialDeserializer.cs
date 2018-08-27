@@ -1,12 +1,13 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace PartialDeserializer
 {
     public static class PartialDeserializer
     {
-        public static T Deserialize<T>(string json)
+        public static IEnumerable<T> Deserialize<T>(string json)
         {
-            return default(T);
+            var deserializer = new PartialDeserializer<T>( new DeserializationPossibilityChecker<T>());
+            return deserializer.Deserialize(json);
         }
     }
 }
